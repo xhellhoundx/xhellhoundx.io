@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/chocolatefactory.jpeg" width="400" height="400">
-    </figure>
+  <img src="./assets/chocolatefactory.jpeg" width="400" height="400">
 </div>
 
 <div align="center">
@@ -29,6 +27,7 @@
 - [Llave de usuario **charlie**](#llave-de-usuario-charlie)
 - [Shell con root - Escalada de privilegios](#shell-con-root---escalada-de-privilegios)
 
+<br>
 
 ### Escaneos
 
@@ -67,17 +66,16 @@ Rutas encontradas:
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/home.png" width="600" height="400">
-        <figcaption>Formulario de acceso del servivio HTTP</figcaption>
-    </figure>
-    <figure>
-        <img src="./assets/source-code.png" width="600" height="300">
-        <figcaption>Código fuente del formulario de acceso</figcaption>
-    </figure>
+    <img src="./assets/home.png" width="600" height="400">
+    <br>
+    <em>Formulario de acceso del servivio HTTP</em>
+    <br><br>
+    <img src="./assets/source-code.png" width="600" height="300">
+    <br>
+    <em>Código fuente del formulario de acceso</em>
 </div>
 
-<br>
+<br><br>
 
 Entramos al servicio **FTP** por el puerto `21` y el usuario "*anonymous*" no tenía contraseña (*incluso cuando la solicita*), es decir, vacía. Obtenemos una imágen llamada `gum_room.jpg`, es una imágen con paquetes de chicles. Se pueden ver algunos nombres y demás especificaciones del producto, procedemos a hacer un poco de forense para ver que revela.
 
@@ -131,15 +129,16 @@ Session completed.
 Con esas credenciales podemos acceder al servicio web, una vez vista la estructura desarrollamos un script para poder interactuar mediante la shell, puedes hacer [click aquí](./assets/rce.py) para leer el script.
 
 <div align="center">
-    <figure>
-        <img src="./assets/http-logged.png" width="600" height="300">
-        <figcaption>Campo (input) ejecutando comandos</figcaption>
-    </figure>
-    <figure>
-        <img src="./assets/http-logged-sc.png" width="600" height="300">
-        <figcaption>Código fuente de los resultados de la ejecución de comandos</figcaption>
-    </figure>
+    <img src="./assets/http-logged.png" width="600" height="300">
+    <br>
+    <em>Campo (input) ejecutando comandos</em>
+    <br><br>
+    <img src="./assets/http-logged-sc.png" width="600" height="300">
+    <br>
+    <em>Código fuente de los resultados de la ejecución de comandos</em>
 </div>
+
+<br><br>
 
 En el mismo directorio del servidor (`/var/www/html`) hay un binario bastante curioso, al solicitarlo en la ruta, lo descargamos y lo analizamos con `ghidra`
 
@@ -162,13 +161,12 @@ key_rev_key: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/bin-download.png" width="600" height="300">
-        <figcaption>Descarga de binario misterioso</figcaption>
-    </figure>
+    <img src="./assets/bin-download.png" width="600" height="300">
+    <br>
+    <em>Descarga de binario misterioso</em>
 </div>
 
-<br>
+<br><br>
 
 ```shell
 ❯ chmod +x key_rev_key
@@ -182,13 +180,12 @@ Bad name!
 Lo analizamos con `ghidra`
 
 <div align="center">
-    <figure>
-        <img src="./assets/ghidra-analisys.png" width="800" height="300">
-        <figcaption>Descarga de binario misterioso</figcaption>
-    </figure>
+    <img src="./assets/ghidra-analisys.png" width="800" height="300">
+    <br>
+    <em>Descarga de binario misterioso</em>
 </div>
 
-<br>
+<br><br>
 
 Vamos a dejar todo esto en pausa y estando dentro en el directorio `/home/charlie` hay dos archivos llamados `teleport` son **llaves RSA**, copiamos la privada e ingresamos como "**charlie**"
 
@@ -227,10 +224,9 @@ Tenemos el **primer flag**.
 Investigando dentro, lo primero por hacer es `sudo -l`, a pesar de que la Runa (Runes) dice que NO tenemos acceso a `/usr/bin/vi` como root (`!root`), la verdad es que no es cierto, así que hacemos:
 
 <div align="center">
-    <figure>
-        <img src="./assets/runes.png" width="600" height="80">
-        <figcaption>Descarga de binario misterioso</figcaption>
-    </figure>
+    <img src="./assets/runes.png" width="600" height="80">
+    <br>
+    <em>Descarga de binario misterioso</em>
 </div>
 
 <br>

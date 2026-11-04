@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/publisher-icon.png" width="400" height="400">
-    </figure>
+    <img src="./assets/publisher-icon.png" width="400" height="400">
 </div>
 
 <div align="center">
@@ -85,17 +83,16 @@ Tras el escaneo de puertos, podemos notar que en el puerto 80 está corriendo un
 Esto nos podría dar un indicio a donde apuntar en cuanto a vulnerabilidades, me enfoco en buscar la versión para mayor precisión en la búsqueda de vulnerabilidades.
 
 <div align="center">
-    <figure>
-        <img src="./assets/homepage.png" width="700" height="400">
-    </figure>
-    <figcaption>Inicio página web</figcaption>
-    <figure>
-        <img src="./assets/homepage_sc.png" width="700" height="300">
-    </figure>
-    <figcaption>Código fuente - Inicio página web</figcaption>
+    <img src="./assets/homepage.png" width="700" height="400">
+    <br>
+    <em>Inicio página web</em>
+    <br><br>
+    <img src="./assets/homepage_sc.png" width="700" height="300">
+    <br>
+    <em>Código fuente - Inicio página web</em>
 </div>
 
-<br>
+<br><br>
 
 > [!WARNING]
 > Debemos estar atentos con los enlaces que apuntan fuera del reto ya que muchos si son oficiales y la intrusión puede conllevar temas legales.
@@ -149,25 +146,24 @@ La ruta `/spip/` está disponible y es un poco más interna en el CMS. No es com
 <br>
 
 <div align="center">
-    <figure>
-        <img src="./assets/spip_int.png" width="700" height="400">
-    </figure>
-    <figcaption>Ruta <strong>/spip/</strong></figcaption>
-    <figure>
-        <img src="./assets/spip_plan_du_site.png" width="700" height="400">
-    </figure>
-    <figcaption>Mapa del sitio</figcaption>
-    <figure>
-        <img src="./assets/spip_loginpage.png" width="700" height="400">
-    </figure>
-    <figcaption>Formulario de acceso</figcaption>
-    <figure>
-        <img src="./assets/spip_loginpage_sc.png" width="700" height="200">
-    </figure>
-    <figcaption>Código fuente - Versión</figcaption>
+    <img src="./assets/spip_int.png" width="700" height="400">
+    <br>
+    <em>Ruta <strong>/spip/</strong></em>
+    <br><br>
+    <img src="./assets/spip_plan_du_site.png" width="700" height="400">
+    <br>
+    <em>Mapa del sitio</em>
+    <br><br>
+    <img src="./assets/spip_loginpage.png" width="700" height="400">
+    <br>
+    <em>Formulario de acceso</em>
+    <br><br>
+    <img src="./assets/spip_loginpage_sc.png" width="700" height="200">
+    <br>
+    <em>Código fuente - Versión</em>
 </div>
 
-<br>
+<br><br>
 
 ```shell
 searchsploit -m 51536
@@ -179,17 +175,16 @@ searchsploit -m 51536
 <br>
 
 <div align="center">
-    <figure>
-        <img src="./assets/burp_response.png" width="700" height="300">
-    </figure>
-    <figcaption>Burpsuite solicitud - respuesta</figcaption>
-    <figure>
-        <img src="./assets/page_error.png" width="700" height="400">
-    </figure>
-    <figcaption>Error del frontend</figcaption>
+    <img src="./assets/burp_response.png" width="700" height="300">
+    <br>
+    <em>Burpsuite solicitud - respuesta</em>
+    <br><br>
+    <img src="./assets/page_error.png" width="700" height="400">
+    <br>
+    <em>Error del frontend</em>
 </div>
 
-<br>
+<br><br>
 
 ### Shell con www-data
 
@@ -322,16 +317,16 @@ think@ip-10-113-181-36:~$ strings /usr/sbin/run_container | less
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/strings_run_container.png">
-    </figure>
-    <figcaption><strong>strings</strong> en el binario <strong>run_container</strong></figcaption>
-    <figure>
-        <img src="./assets/ghidra_analisys.png">
-    </figure>
-    <figcaption>Desmantelado con <strong>ghidra</strong></figcaption>
+    <img src="./assets/strings_run_container.png">
+    <br>
+    <em><strong>strings</strong> en el binario <strong>run_container</strong></em>
+    <br><br>
+    <img src="./assets/ghidra_analisys.png">
+    <br>
+    <em>Desmantelado con <strong>ghidra</strong></em>
 </div>
 
+<br><br>
 
 ### Shell con root
 
@@ -358,21 +353,20 @@ ls: cannot open directory '/opt': Permission denied
 Como no tenemos la contraseña de **think** para ver qué puede ejecutar en `sudoers` buscamos otra alternativa; listar con **linPEAS**, lo ejecutamos y encontraremos que `apparmor` está usando una shell `ash` como perfil y además el usuario **think** también la usa por defecto, de hecho, no aparece el usuario en el archivo `/etc/passwd` 
 
 <div align="center">
-    <figure>
-        <img src="./assets/apparmor_protection.png">
-    </figure>
-    <figcaption><strong>AppArmor</strong> usando perfil <strong>/usr/sbin/ash</strong></figcaption>
-    <figure>
-        <img src="./assets/ash_shell.png">
-    </figure>
-    <figcaption>Procesos indican think usando <strong>ash</strong></figcaption>
-    <figure>
-        <img src="./assets/ash_think.png">
-    </figure>
-    <figcaption>Confirmando shell <strong>ash</strong> de think</figcaption>
+    <img src="./assets/apparmor_protection.png">
+    <br>
+    <em><strong>AppArmor</strong> usando perfil <strong>/usr/sbin/ash</strong></em>
+    <br><br>
+    <img src="./assets/ash_shell.png">
+    <br>
+    <em>Procesos indican think usando <strong>ash</strong></em>
+    <br><br>
+    <img src="./assets/ash_think.png">
+    <br>
+    <em>Confirmando shell <strong>ash</strong> de think</em>
 </div>
 
-<br>
+<br><br>
 
 ```shell
 think@ip-10-113-181-36:/usr/sbin$ grep -i '/bin/.*sh' /etc/passwd

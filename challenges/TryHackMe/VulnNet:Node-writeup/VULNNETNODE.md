@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/vulnnetnode-icon.png" width="400" height="400">
-    </figure>
+    <img src="./assets/vulnnetnode-icon.png" width="400" height="400">
 </div>
 
 <div align="center">
@@ -106,14 +104,13 @@ Eso nos daría:
 Lo mantendremos allí por el momento y luego veremos si es útil. Mientras tanto vamos investigando un poco la página web y ver qué podemos obtener. Se puede notar que el código fuente del 'homepage' está en una sola línea, así que hacemos un escaneo con `ffuf` para ver rutas existentes, revelando que la ruta `/login/` es la única disponible, que a su vez contiene un formulario de acceso (login)
 
 <div align="center">
-    <figure>
-        <img src="./assets/homepage.png" width="700">
-    </figure>
-    <figcaption>Página de inicio</figcaption>
-    <figure>
-        <img src="./assets/login_form.png" width="700">
-    </figure>
-    <figcaption>Formulario de acceso</figcaption>
+    <img src="./assets/homepage.png" width="700">
+    <br>
+    <em>Página de inicio</em>
+    <br><br>
+    <img src="./assets/login_form.png" width="700">
+    <br>
+    <em>Formulario de acceso</em>
 </div>
 
 <br><br>
@@ -159,14 +156,13 @@ LOGIN                   [Status: 200, Size: 2127, Words: 240, Lines: 113, Durati
 Volviendo un poco al 'homepage' hay algo que me pareció muy curioso, sin haber entregado credenciales o sin haber pasado por el formulario de acceso. Nos dice "**Welcome, Guest**", ¿recuerdan que anteriormente habíamos decodificado las cookies de sesión? Es porque está apuntando a esa cookie para poner el nombre en esa etiqueta del HTML. Así que decido intentar cambiar ese nombre por otro y lo renderiza, a partir de este momento me queda claro que el acceso y la vulnerabilidad será a través de las cookies, simplemente tendríamos que buscar el vector de ataque correcto para ingresar.
 
 <div align="center">
-    <figure>
-        <img src="./assets/change_cookie_user_name.png" width="700">
-    </figure>
-    <figcaption>Se cambia el campo "username" de la cookie de sesión</figcaption>
-    <figure>
-        <img src="./assets/name_cookie_changed.png" width="700">
-    </figure>
-    <figcaption>Renderizado del nuevo nombre</figcaption>
+    <img src="./assets/change_cookie_user_name.png" width="700">
+    <br>
+    <em>Se cambia el campo "username" de la cookie de sesión</em>
+    <br><br>
+    <img src="./assets/name_cookie_changed.png" width="700">
+    <br>
+    <em>Renderizado del nuevo nombre</em>
 </div>
 
 <br><br>
@@ -174,10 +170,9 @@ Volviendo un poco al 'homepage' hay algo que me pareció muy curioso, sin haber 
 Tras intentar logearme con un usuario aleatorio para ver la respuesta, noté que no estaba enviando los campos. De hecho por el momento no hay ni siquiera un script que gestione los envíos o el form gestionando mediante solicitudes POST.
 
 <div align="center">
-    <figure>
-        <img src="./assets/no_send_creds.png" width="700">
-    </figure>
-    <figcaption>No se envía nada incluso con los campos llenos</figcaption>
+    <img src="./assets/no_send_creds.png" width="700">
+    <br>
+    <em>No se envía nada incluso con los campos llenos</em>
 </div>
 
 <br><br>
@@ -190,23 +185,21 @@ Como lo único que está funcionando, o mejor dicho, se está enviando y recibie
 >
 
 <div align="center">
-    <figure>
-        <img src="./assets/unserialize_fails.png" width="700">
-    </figure>
-    <figcaption>Error de "unserialize"</figcaption>
+    <img src="./assets/unserialize_fails.png" width="700">
+    <br>
+    <em>Error de "unserialize"</em>
 </div>
 
-<br>
+<br><br>
 
 ### Shel con www
 
 Ahora procedemos con las pruebas de concepto (PoC) y ver si funciona, en este caso lo que encontramos es un **Blind RCE** ya que NO veremos reflejados los comandos tales como `whoami`; `id` u otros similares que muestren información pero si viajará el payload por la red. Para la prueba enviaré múltiples `ping` a mi máquina atacante.
 
 <div align="center">
-    <figure>
-        <img src="./assets/ping_rcv.png" width="700">
-    </figure>
-    <figcaption>PoC con <strong>ping</strong></figcaption>
+    <img src="./assets/ping_rcv.png" width="700">
+    <br>
+    <em>PoC con <strong>ping</strong></em>
 </div>
 
 <br><br>
@@ -214,13 +207,12 @@ Ahora procedemos con las pruebas de concepto (PoC) y ver si funciona, en este ca
 De inmediato enviamos una shell reverse **mkfifo** y la recibimos con éxito.
 
 <div align="center">
-    <figure>
-        <img src="./assets/shell_rev.png" width="700">
-    </figure>
-    <figcaption>Enviando la Shell Reverse a través de Burpsuite</figcaption>
+    <img src="./assets/shell_rev.png" width="700">
+    <br>
+    <em>Enviando la Shell Reverse a través de Burpsuite</em>
 </div>
 
-<br>
+<br><br>
 
 ```shell
 ❯ nc -nlvp 4444

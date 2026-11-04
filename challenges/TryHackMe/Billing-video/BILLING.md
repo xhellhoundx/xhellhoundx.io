@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/billing-icon.png" width="400" height="400">
-    </figure>
+  <img src="./assets/billing-icon.png" width="400" height="400">
 </div>
 
 <div align="center">

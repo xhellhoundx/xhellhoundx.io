@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/uahighschool-icon.png" width="400" height="400">
-    </figure>
+    <img src="./assets/uahighschool-icon.png" width="400" height="400">
 </div>
 
 <div align="center">
@@ -82,36 +80,34 @@ Service detection performed. Please report any incorrect results at https://nmap
 Tenemos un servidor Apache 2.4.41 corriendo por el puerto 80. Podríamos asumir que el lenguaje del servidor es PHP. Además de varias rutas en la página de inicio.
 
 <div align="center">
-    <figure>
-        <img src="./assets/http_home.png" width="600" height="400">
-        <figcaption>Página de inicio</figcaption>
-    </figure>
-    <figure>
-        <img src="./assets/http_home_sc.png" width="600" height="300">
-        <figcaption>Rutas en la página web</figcaption>
-    </figure>
+    <img src="./assets/http_home.png" width="600" height="400">
+    <br>
+    <em>Página de inicio</em>
+    <br><br>
+    <img src="./assets/http_home_sc.png" width="600" height="300">
+    <br>
+    <em>Rutas en la página web</em>
 </div>
 
-<br>
+<br><br>
 
 Tras una larga búsqueda por toda la web y múltiples escaneos, hubo algo que llamó mi atención, la ruta `/assets/` retornaba **Status Code 200**, así que decidí interceptar la solicitud con `Burpsuite` y sacar las cookies que asigna el servidor en una solicitud, la respuesta viene con el Header `Set-Cookie`, lo que me hace pensar que esta ruta en particular está sirviendo archivos así como la ruta principal `/`. Hacemos una solicitud a `/assets/index.php`, simplemente hacemos una solicitud a `/assets/index.php` y vemos que está respondiendo `200 OK`
 
 <div align="center">
-    <figure>
         <img src="./assets/req_captured1.png" width="500" height="400">
-        <figcaption>Captura de la solicitud</figcaption>
-    </figure>
-    <figure>
+        <br>
+        <em>Captura de la solicitud</em>
+        <br><br>
         <img src="./assets/req_response_wcookies.png" width="600" height="300">
-        <figcaption>Respuesta a la solicitud</figcaption>
-    </figure>
-    <figure>
+        <br>
+        <em>Respuesta a la solicitud</em>
+        <br><br>
         <img src="./assets/index_php_ok.png" width="600" height="300">
-        <figcaption>Solicitud a <strong>index.php</strong></figcaption>
-    </figure>
+        <br>
+        <em>Solicitud a <strong>index.php</strong></em>
 </div>
 
-<br>
+<br><br>
 
 ### Shell con www-data
 
@@ -221,17 +217,16 @@ Entonces el archivo `passphrase.txt` que encontramos es para extraer archivos em
 <br>
 
 <div align="center">
-    <figure>
         <img src="./assets/hexedit.png">
-        <figcaption>Magic Bytes originales</figcaption>
-    </figure>
-    <figure>
+        <br>
+        <em>Magic Bytes originales</em>
+        <br><br>
         <img src="./assets/hexedit_repaired.png">
-        <figcaption>Magic Bytes correctos</figcaption>
-    </figure>
+        <br>
+        <em>Magic Bytes correctos</em>
 </div>
 
-<br>
+<br><br>
 
 Ahora que hemos dejado la foto en condiciones normales y con los 'magic bytes' correctos hacemos un poco de esteganografía con `steghide` y vemos que tiene un archivo `creds.txt` embebido, lo extraemos y tiene las credenciales del usuario **deku** en él. En este punto con la shell reverse deberías saber que este usuario existía en el sistema
 

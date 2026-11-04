@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/bedrock.png" width="300" height="400">
-    </figure>
+    <img src="./assets/bedrock.png" width="300" height="400">
 </div>
 
 <div align="center">
@@ -35,6 +33,8 @@
 
 *No sabía que los nombres reales de "Pedro" y "Pablo" en inglés eran "Fred" y "Barney", no sé por qué cambiar los nombres si con la traducción bastaba.*
 
+<br>
+
 ### Escaneos
 
 ```shell
@@ -54,20 +54,27 @@ Host: 10.112.144.183 ()	Ports: 22/open/tcp//ssh///, 80/open/tcp//http///, 4040/o
 nmap -p22,80,4040,9009,54321 -sV -sC 10.112.144.183 -oN openPorts.log
 ```
 
+<br>
+
 Puedes ver el escaneo exhausivo haciendo [click aquí](./assets/openPorts.log)
+
+<br>
 
 ### Investigando servicio Web
 
 En efecto tenemos una redirección (*en mi caso Firefox me pide aceptar los riesgos de seguridad*), tenemos un mensaje escrito por **Barney** diciendo que no sabe qué es una bbdd y que **Bamm Bamm** intentó configurar una *SQL Database* pero no la ve corriendo, que le dijo que era del "baño" y sobre los `9000`, así que intentaremos en el puerto `9009` con `nc`
 
 <div align="center">
-    <figure>
-        <img src="./assets/sec-risk.png" width="700" height="400">
-    </figure>
-    <figure>
-        <img src="./assets/http-welc.png" width="700" height="400">
-    </figure>
+    <img src="./assets/sec-risk.png">
+    <br>
+    <em>Aceptando el riesgo del navegador</em>
+    <br><br>
+    <img src="./assets/http-welc.png">
+    <br>
+    <em>Acceso a la página inicial</em>
 </div>
+
+<br><br>
 
 Nos conectamos a través de `nc` al socket escuchando en el puerto `9009` y encontraremos lo siguiente:
 
@@ -237,6 +244,8 @@ What are you looking for? fred
 
 ```
 
+<br><br>
+
 ### Shell con barney
 
 Sin embargo ahora que tenemos un **certificado.pem** y una **key.pem** podemos acceder por el puerto `54321` con `openssl` (*no puse la salida completa porque al conectar es realmente extensa, pero sí los comandos una vez hagamos la conexión*) 
@@ -267,6 +276,8 @@ b3dr0ck> help
 Password hint: d1ad7c0a3805955a35eb260dab4180dd (user = 'Barney Rubble')
 ```
 
+<br>
+
 Mientras mantengo esa conexión con esa ayuda que nos dan, intento conectarme por el servicio `SSH` y conseguimos entrar como **Barney**:
 
 ```
@@ -292,6 +303,8 @@ drwx------ 2 barney barney 4096 Apr 30  2022 .cache
 lrwxrwxrwx 1 root   root      9 Apr 29  2022 .viminfo -> /dev/nul
 ```
 
+<br>
+
 Obtenemos el primer flag **barney.txt**, ahora veremos qué permisos tiene **Barney** para ejecutar como **sudo** en esta máquina.
 
 ```
@@ -303,6 +316,8 @@ Matching Defaults entries for barney on ip-10-112-144-183:
 User barney may run the following commands on ip-10-112-144-183:
     (ALL : ALL) /usr/bin/certutil
 ```
+
+<br>
 
 Además de lo anterior, encontré donde se generan los certificados
 
@@ -350,13 +365,19 @@ barney@ip-10-112-144-183:~$ ls -la /usr/share/abc/dist/
 certs.js   server.js  
 ```
 
+<br>
+
 Continuando con lo que nos interesa, podemos listar los certificados que existen y vemos que no hay alguno que nos interese, tendríamos que crear un nuevo certificado...
+
+<br>
 
 >[!TIP]
 >https://www.linux.org/docs/man1/certutil.html
 >
 >https://linuxcommandlibrary.com/man/certutil
 >
+
+<br>
 
 ```
 barney@ip-10-112-144-183:~$ sudo /usr/bin/certutil -L
@@ -374,6 +395,8 @@ Generate new keypair:
 <br>
 
 *NOTA: Usen los comandos: `sudo /usr/bin/certutil -L -n ls` o también `sudo /usr/bin/certutil -L -n certutil`*
+
+<br>
 
 ### Shell con fred
 
@@ -399,6 +422,8 @@ WWFiYmFEYWJiYUQwMDAwIQo=
 [REDACTED]
 ```
 
+<br>
+
 Tenemos la contraseña de **fred** así que entraremos por el puerto `22` pero con la cuenta de **fred**.
 
 ```
@@ -412,7 +437,11 @@ fred cdrom dip plugdev help
 /home/fred
 ```
 
+<br>
+
 Conseguimos el flag de **fred.txt**
+
+<br>
 
 ### Shell con root
 
@@ -468,10 +497,12 @@ Analyzing 'a00a12aad6b7c16bf07032bd05a31d56'
 Para no gastar tantos recursos crackeando vamos a [crackstation](https://crackstation.net/) y crackeamos esto
 
 <div align="center">
-    <figure>
-        <img src="./assets/crackstation.png" width="700" height="400">
-    </figure>
+    <img src="./assets/crackstation.png" width="700" height="400">
+    <br>
+    <em>Hash crackeado</em>    
 </div>
+
+<br><br>
 
 ```
 fred@ip-10-112-144-183:~$ su root

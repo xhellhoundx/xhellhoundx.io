@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/lookup-icon.png" width="400" height="400">
-    </figure>
+    <img src="./assets/lookup-icon.png" width="400" height="400">
 </div>
 
 <div align="center">
@@ -78,26 +76,26 @@ http://lookup.thm [200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPSer
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/login.png" width="800" height="400">
-        <figcaption>Formulario de acceso</figcaption>
-    </figure>
+    <img src="./assets/login.png" width="800" height="400">
+    <br>
+    <em>Formulario de acceso</em>
 </div>
 
-<br>
+<br><br>
 
 Entonces, tras inspeccionar el código fuente, otras rutas y un poco con `BurpSuite` noté que el mensaje de rechazo nos dice MUCHO ya que si pasamos el usuario `admin` y cualquier contraseña nos da el mensaje de **contraseña incorrecta**, así que por descarte ya sabemos que hay un usuario llamado `admin` y adicional encontré uno llamado `jose`
 
 <div align="center">
-    <figure>
-        <img src="./assets/rej-msg-nothing.png" width="800" height="300">
-        <figcaption>Intento de credenciales aleatorias</figcaption>
-    </figure>
-    <figure>
-        <img src="./assets/rej-pwd.png" width="800" height="400">
-        <figcaption>Intento con nombre de usuario admin</figcaption>
-    </figure>
+    <img src="./assets/rej-msg-nothing.png" width="800" height="300">
+    <br>
+    <em>Intento de credenciales aleatorias</em>
+    <br><br>
+    <img src="./assets/rej-pwd.png" width="800" height="400">
+    <br>
+    <em>Intento con nombre de usuario admin</em>
 </div>
+
+<br><br>
 
 ```shell
 ❯ ffuf -u "http://lookup.thm/login.php" -w /usr/share/seclists/Usernames/Honeypot-Captures/multiplesources-users-fabian-fingerle.de.txt -d "username=FUZZ&password=password=test" -H 'Content-Type: application/x-www-form-urlencoded' -t 200 -mc 200 -fs 74
@@ -200,13 +198,12 @@ jose                    [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 105
 Ingresamos al sitio con el usuario `jose` y la contraseña encontrada.
 
 <div align="center">
-    <figure>
-        <img src="./assets/elfinder.png" width="800" height="350">
-        <figcaption>Redirección a <strong>elFinder</strong></figcaption>
-    </figure>
+    <img src="./assets/elfinder.png" width="800" height="350">
+    <br>
+    <em>Redirección a <strong>elFinder</strong></em>
 </div>
 
-<br>
+<br><br>
 
 ### Shell con www-Data
 
@@ -257,26 +254,24 @@ ubuntu:x:1002:1003:Ubuntu:/home/ubuntu:/bin/bash
 Ahora que tenemos **RCE**, podríamos hacer una *Shell Reverse*
 
 <div align="center">
-    <figure>
-        <img src="./assets/rev-shell.png" width="800" height="250">
-        <figcaption>Shell Reverse con netcat</figcaption>
-    </figure>
+    <img src="./assets/rev-shell.png" width="800" height="250">
+    <br>
+    <em>Shell Reverse con netcat</em>
 </div>
 
-<br>
+<br><br>
 
 Tras una larga búsqueda, ejecuté "**linPEAS**" para ver si había alguna vulnerabilidad y encontramos lo siguiente
 
 <div align="center">
-    <figure>
-        <img src="./assets/pwm-bin.png" width="600" height="300">
-        <figcaption>Ejecución de <strong>linPEAS</strong></figcaption>
-    </figure>
+    <img src="./assets/pwm-bin.png" width="600" height="300">
+    <br>
+    <em>Ejecución de <strong>linPEAS</strong></em>
 </div>
 
 Nos encontramos con el binario `pwm` en `/usr/sbin/pwm`:
 
-<br>
+<br><br>
 
 ### Shell con think
 
@@ -302,13 +297,12 @@ www-data@ip-10-113-131-98:/var/www/lookup.thm/public_html$ strings $(which pwm) 
 ```
 
 <div align="center">
-    <figure>
-        <img src="./assets/pwm-strings.png" width="400" height="600">
-        <figcaption><strong>strings</strong> sobre el binario <strong>pwm</strong></figcaption>
-    </figure>
+    <img src="./assets/pwm-strings.png" width="400" height="600">
+    <br>
+    <em><strong>strings</strong> sobre el binario <strong>pwm</strong></em>
 </div>
 
-<br>
+<br><br>
 
 Para entender mejor lo que está ocurriendo, traigo el binario a mi Host y lo analizo con `ghidra`, tras la búsqueda en la función `main` podemos notar que la función `snprintf` llama a `id` (otro binario del sistema) sin la ruta absoluta, quiere decir que podríamos aplicar un **Path Hijacking** y vulnerar este binario, de esa forma nos revelará la contraseña para el usuario `think` ubicada en su archivo `.passwords`
 
@@ -319,13 +313,12 @@ Para entender mejor lo que está ocurriendo, traigo el binario a mi Host y lo an
 
 
 <div align="center">
-    <figure>
-        <img src="./assets/ghidra-disas.png" width="800" height="400">
-        <figcaption>Desensamblando con <strong>ghidra</strong></figcaption>
-    </figure>
+    <img src="./assets/ghidra-disas.png" width="800" height="400">
+    <br>
+    <em>Desensamblando con <strong>ghidra</strong></em>
 </div>
 
-<br>
+<br><br>
 
 ```shell
 www-data@ip-10-113-131-98:/tmp$ echo '#!/bin/bash' > id
@@ -341,13 +334,12 @@ www-data@ip-10-113-131-98:/tmp$ export PATH=/tmp:$PATH
 Ejecutamos el binario `/usr/sbin/pwm` y obtendremos una lista de contraseñas:
 
 <div align="center">
-    <figure>
-        <img src="./assets/id_think.png" width="400" height="600">
-        <figcaption>Lista de contraseñas con <strong>pwm</strong></figcaption>
-    </figure>
+    <img src="./assets/id_think.png" width="400" height="600">
+    <br>
+    <em>Lista de contraseñas con <strong>pwm</strong></em>
 </div>
 
-<br>
+<br><br>
 
 Luego tenemos que pasar ese resultado a un archivo (recuerden usar `/usr/bin/pwm > file`) y pueden usar el siguiente script:
 
