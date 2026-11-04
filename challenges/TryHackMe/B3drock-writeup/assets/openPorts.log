@@ -1,0 +1,181 @@
+# Nmap 7.95 scan initiated Fri Oct 30 20:29:11 2026 as: nmap -p22,80,4040,9009,54321 -sV -sC -oN openPorts.log 10.112.144.183
+Nmap scan report for bedrock.thm (10.112.144.183)
+Host is up (0.11s latency).
+
+PORT      STATE SERVICE      VERSION
+22/tcp    open  ssh          OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 23:70:79:f1:39:2a:c6:34:46:25:dd:34:1a:0b:8c:82 (RSA)
+|   256 81:1b:89:c7:82:85:94:a5:d4:ae:46:21:e0:4b:86:8f (ECDSA)
+|_  256 f1:51:64:11:81:c8:be:b9:b2:a5:f9:2e:95:67:5e:98 (ED25519)
+80/tcp    open  http         nginx 1.18.0 (Ubuntu)
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to https://bedrock.thm:4040/
+4040/tcp  open  ssl/yo-main?
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2026-10-30T19:14:58
+|_Not valid after:  2027-10-30T19:14:58
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Content-type: text/html
+|     Date: Fri, 30 Oct 2026 19:29:34 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html>
+|     <head>
+|     <title>ABC</title>
+|     <style>
+|     body {
+|     width: 35em;
+|     margin: 0 auto;
+|     font-family: Tahoma, Verdana, Arial, sans-serif;
+|     </style>
+|     </head>
+|     <body>
+|     <h1>Welcome to ABC!</h1>
+|     <p>Abbadabba Broadcasting Compandy</p>
+|     <p>We're in the process of building a website! Can you believe this technology exists in bedrock?!?</p>
+|     <p>Barney is helping to setup the server, and he said this info was important...</p>
+|     <pre>
+|     Hey, it's Barney. I only figured out nginx so far, what the h3ll is a database?!?
+|     Bamm Bamm tried to setup a sql database, but I don't see it running.
+|     Looks like it started something else, but I'm not sure how to turn it off...
+|     said it was from the toilet and OVER 9000!
+|     Need to try and secure
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     Content-type: text/html
+|     Date: Fri, 30 Oct 2026 19:29:35 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html>
+|     <head>
+|     <title>ABC</title>
+|     <style>
+|     body {
+|     width: 35em;
+|     margin: 0 auto;
+|     font-family: Tahoma, Verdana, Arial, sans-serif;
+|     </style>
+|     </head>
+|     <body>
+|     <h1>Welcome to ABC!</h1>
+|     <p>Abbadabba Broadcasting Compandy</p>
+|     <p>We're in the process of building a website! Can you believe this technology exists in bedrock?!?</p>
+|     <p>Barney is helping to setup the server, and he said this info was important...</p>
+|     <pre>
+|     Hey, it's Barney. I only figured out nginx so far, what the h3ll is a database?!?
+|     Bamm Bamm tried to setup a sql database, but I don't see it running.
+|     Looks like it started something else, but I'm not sure how to turn it off...
+|     said it was from the toilet and OVER 9000!
+|_    Need to try and secure
+| tls-alpn: 
+|_  http/1.1
+9009/tcp  open  pichat?
+| fingerprint-strings: 
+|   NULL: 
+|     ____ _____ 
+|     \x20\x20 / / | | | | /\x20 | _ \x20/ ____|
+|     \x20\x20 /\x20 / /__| | ___ ___ _ __ ___ ___ | |_ ___ / \x20 | |_) | | 
+|     \x20/ / / _ \x20|/ __/ _ \| '_ ` _ \x20/ _ \x20| __/ _ \x20 / /\x20\x20| _ <| | 
+|     \x20 /\x20 / __/ | (_| (_) | | | | | | __/ | || (_) | / ____ \| |_) | |____ 
+|     ___|_|______/|_| |_| |_|___| _____/ /_/ _____/ _____|
+|_    What are you looking for?
+54321/tcp open  ssl/unknown
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2026-10-30T19:14:58
+|_Not valid after:  2027-10-30T19:14:58
+|_ssl-date: TLS randomness does not represent time
+| fingerprint-strings: 
+|   Help, LDAPSearchReq, NULL, ms-sql-s: 
+|_    Error: 'undefined' is not authorized for access.
+3 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port4040-TCP:V=7.95%T=SSL%I=7%D=10/30%Time=6AE4F01F%P=x86_64-pc-linux-g
+SF:nu%r(GetRequest,3BE,"HTTP/1\.1\x20200\x20OK\r\nContent-type:\x20text/ht
+SF:ml\r\nDate:\x20Fri,\x2030\x20Oct\x202026\x2019:29:34\x20GMT\r\nConnecti
+SF:on:\x20close\r\n\r\n<!DOCTYPE\x20html>\n<html>\n\x20\x20<head>\n\x20\x2
+SF:0\x20\x20<title>ABC</title>\n\x20\x20\x20\x20<style>\n\x20\x20\x20\x20\
+SF:x20\x20body\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20width:\x2035em;\n\x20
+SF:\x20\x20\x20\x20\x20\x20\x20margin:\x200\x20auto;\n\x20\x20\x20\x20\x20
+SF:\x20\x20\x20font-family:\x20Tahoma,\x20Verdana,\x20Arial,\x20sans-serif
+SF:;\n\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20</style>\n\x20\x20</head>
+SF:\n\n\x20\x20<body>\n\x20\x20\x20\x20<h1>Welcome\x20to\x20ABC!</h1>\n\x2
+SF:0\x20\x20\x20<p>Abbadabba\x20Broadcasting\x20Compandy</p>\n\n\x20\x20\x
+SF:20\x20<p>We're\x20in\x20the\x20process\x20of\x20building\x20a\x20websit
+SF:e!\x20Can\x20you\x20believe\x20this\x20technology\x20exists\x20in\x20be
+SF:drock\?!\?</p>\n\n\x20\x20\x20\x20<p>Barney\x20is\x20helping\x20to\x20s
+SF:etup\x20the\x20server,\x20and\x20he\x20said\x20this\x20info\x20was\x20i
+SF:mportant\.\.\.</p>\n\n<pre>\nHey,\x20it's\x20Barney\.\x20I\x20only\x20f
+SF:igured\x20out\x20nginx\x20so\x20far,\x20what\x20the\x20h3ll\x20is\x20a\
+SF:x20database\?!\?\nBamm\x20Bamm\x20tried\x20to\x20setup\x20a\x20sql\x20d
+SF:atabase,\x20but\x20I\x20don't\x20see\x20it\x20running\.\nLooks\x20like\
+SF:x20it\x20started\x20something\x20else,\x20but\x20I'm\x20not\x20sure\x20
+SF:how\x20to\x20turn\x20it\x20off\.\.\.\n\nHe\x20said\x20it\x20was\x20from
+SF:\x20the\x20toilet\x20and\x20OVER\x209000!\n\nNeed\x20to\x20try\x20and\x
+SF:20secure\x20")%r(HTTPOptions,3BE,"HTTP/1\.1\x20200\x20OK\r\nContent-typ
+SF:e:\x20text/html\r\nDate:\x20Fri,\x2030\x20Oct\x202026\x2019:29:35\x20GM
+SF:T\r\nConnection:\x20close\r\n\r\n<!DOCTYPE\x20html>\n<html>\n\x20\x20<h
+SF:ead>\n\x20\x20\x20\x20<title>ABC</title>\n\x20\x20\x20\x20<style>\n\x20
+SF:\x20\x20\x20\x20\x20body\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20width:\x
+SF:2035em;\n\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x20auto;\n\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20font-family:\x20Tahoma,\x20Verdana,\x20Arial,\
+SF:x20sans-serif;\n\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20</style>\n\x
+SF:20\x20</head>\n\n\x20\x20<body>\n\x20\x20\x20\x20<h1>Welcome\x20to\x20A
+SF:BC!</h1>\n\x20\x20\x20\x20<p>Abbadabba\x20Broadcasting\x20Compandy</p>\
+SF:n\n\x20\x20\x20\x20<p>We're\x20in\x20the\x20process\x20of\x20building\x
+SF:20a\x20website!\x20Can\x20you\x20believe\x20this\x20technology\x20exist
+SF:s\x20in\x20bedrock\?!\?</p>\n\n\x20\x20\x20\x20<p>Barney\x20is\x20helpi
+SF:ng\x20to\x20setup\x20the\x20server,\x20and\x20he\x20said\x20this\x20inf
+SF:o\x20was\x20important\.\.\.</p>\n\n<pre>\nHey,\x20it's\x20Barney\.\x20I
+SF:\x20only\x20figured\x20out\x20nginx\x20so\x20far,\x20what\x20the\x20h3l
+SF:l\x20is\x20a\x20database\?!\?\nBamm\x20Bamm\x20tried\x20to\x20setup\x20
+SF:a\x20sql\x20database,\x20but\x20I\x20don't\x20see\x20it\x20running\.\nL
+SF:ooks\x20like\x20it\x20started\x20something\x20else,\x20but\x20I'm\x20no
+SF:t\x20sure\x20how\x20to\x20turn\x20it\x20off\.\.\.\n\nHe\x20said\x20it\x
+SF:20was\x20from\x20the\x20toilet\x20and\x20OVER\x209000!\n\nNeed\x20to\x2
+SF:0try\x20and\x20secure\x20");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port9009-TCP:V=7.95%I=7%D=10/30%Time=6AE4F00D%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,29E,"\n\n\x20__\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20__\x20\x20_\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20_\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20____\x20\x20\x20_____\x20
+SF:\n\x20\\\x20\\\x20\x20\x20\x20\x20\x20\x20\x20/\x20/\x20\|\x20\|\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\|\x20\|\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20/\\\x20\x20\x20\|\x20\x20_\x20\\\x20/\x20____\|\n\x20\x20\\\
+SF:x20\\\x20\x20/\\\x20\x20/\x20/__\|\x20\|\x20___\x20___\x20\x20_\x20__\x
+SF:20___\x20\x20\x20___\x20\x20\|\x20\|_\x20___\x20\x20\x20\x20\x20\x20/\x
+SF:20\x20\\\x20\x20\|\x20\|_\)\x20\|\x20\|\x20\x20\x20\x20\x20\n\x20\x20\x
+SF:20\\\x20\\/\x20\x20\\/\x20/\x20_\x20\\\x20\|/\x20__/\x20_\x20\\\|\x20'_
+SF:\x20`\x20_\x20\\\x20/\x20_\x20\\\x20\|\x20__/\x20_\x20\\\x20\x20\x20\x2
+SF:0/\x20/\\\x20\\\x20\|\x20\x20_\x20<\|\x20\|\x20\x20\x20\x20\x20\n\x20\x
+SF:20\x20\x20\\\x20\x20/\\\x20\x20/\x20\x20__/\x20\|\x20\(_\|\x20\(_\)\x20
+SF:\|\x20\|\x20\|\x20\|\x20\|\x20\|\x20\x20__/\x20\|\x20\|\|\x20\(_\)\x20\
+SF:|\x20\x20/\x20____\x20\\\|\x20\|_\)\x20\|\x20\|____\x20\n\x20\x20\x20\x
+SF:20\x20\\/\x20\x20\\/\x20\\___\|_\|\\___\\___/\|_\|\x20\|_\|\x20\|_\|\\_
+SF:__\|\x20\x20\\__\\___/\x20\x20/_/\x20\x20\x20\x20\\_\\____/\x20\\_____\
+SF:|\n\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\n\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\n
+SF:\n\nWhat\x20are\x20you\x20looking\x20for\?\x20");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port54321-TCP:V=7.95%T=SSL%I=7%D=10/30%Time=6AE4F014%P=x86_64-pc-linux-
+SF:gnu%r(NULL,31,"Error:\x20'undefined'\x20is\x20not\x20authorized\x20for\
+SF:x20access\.\n")%r(Help,31,"Error:\x20'undefined'\x20is\x20not\x20author
+SF:ized\x20for\x20access\.\n")%r(LDAPSearchReq,31,"Error:\x20'undefined'\x
+SF:20is\x20not\x20authorized\x20for\x20access\.\n")%r(ms-sql-s,31,"Error:\
+SF:x20'undefined'\x20is\x20not\x20authorized\x20for\x20access\.\n");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Oct 30 20:31:54 2026 -- 1 IP address (1 host up) scanned in 163.59 seconds

@@ -1,0 +1,42 @@
+WhatWeb report for http://vulnet.thm:8080
+Status    : 200 OK
+Title     : VulnNet &ndash; Your reliable news source &ndash; Try Now!
+IP        : 10.114.153.106
+Country   : RESERVED, ZZ
+
+Summary   : Cookies[session], HTML5, HttpOnly[session], X-Powered-By[Express]
+
+Detected Plugins:
+[ Cookies ]
+	Display the names of cookies in the HTTP headers. The 
+	values are not returned to save on space. 
+
+	String       : session
+
+[ HTML5 ]
+	HTML version 5, detected by the doctype declaration 
+
+
+[ HttpOnly ]
+	If the HttpOnly flag is included in the HTTP set-cookie 
+	response header and the browser supports it then the cookie 
+	cannot be accessed through client side script - More Info: 
+	http://en.wikipedia.org/wiki/HTTP_cookie 
+
+	String       : session
+
+[ X-Powered-By ]
+	X-Powered-By HTTP header 
+
+	String       : Express (from x-powered-by string)
+
+HTTP Headers:
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Set-Cookie: session=eyJ1c2VybmFtZSI6Ikd1ZXN0IiwiaXNHdWVzdCI6dHJ1ZSwiZW5jb2RpbmciOiAidXRmLTgifQ%3D%3D; Max-Age=1200; Path=/; Expires=Tue, 03 Nov 2026 22:48:29 GMT; HttpOnly
+	Content-Type: text/html; charset=utf-8
+	Content-Length: 7599
+	ETag: W/"1daf-dPXia8DLlOwYnTXebWSDo/Cj9Co"
+	Date: Tue, 03 Nov 2026 22:28:29 GMT
+	Connection: close
+	

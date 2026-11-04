@@ -1,0 +1,9 @@
+# Notes files
+*.txt
+assets/portfolio-tree.png
+
+# Contact directory [under construction]
+contact/
+
+# Templates and misc
+challenges/template.md
