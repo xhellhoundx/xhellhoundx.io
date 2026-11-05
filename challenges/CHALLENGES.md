@@ -30,6 +30,7 @@ hellhound@system:~/articles$ scan ./ --fuzz-directory --show-all
 | TryHackMe | [Pyrat](./TryHackMe/Pyrat-video/PYRAT.md) | Fácil | Writeup |
 | TryHackMe | [Silver Platter](./TryHackMe/SilverPlatter-video/SILVERPLATTER.md) | Fácil | Video [Reporte] |
 | TryHackMe | [UA High School](./TryHackMe/UAHighSchool-writeup/UAHIGHSCHOOL.md) | Fácil | Writeup |
+| TryHackMe | [VulnNet: Internal](./TryHackMe/VulnNet:Internal-writeup/VULNNETINTERNAL.md) | Fácil | Writeup |
 | TryHackMe | [VulnNet: Node](./TryHackMe/VulnNet:Node-writeup/VULNNETNODE.md) | Fácil |  Writeup |
 | TryHackMe | [WhiteRose](./TryHackMe/Whiterose-writeup/WHITEROSE.md) | Fácil | Writeup |
 

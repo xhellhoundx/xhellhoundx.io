@@ -1,0 +1,80 @@
+# Nmap 7.95 scan initiated Thu Nov  5 11:20:33 2026 as: nmap -p22,111,139,445,873,2049,6379,39297,40461,40719,44801 -sV -sC -vvv -oN openPorts.log 10.114.158.11
+Nmap scan report for vulnnet.thm (10.114.158.11)
+Host is up, received timestamp-reply ttl 62 (0.086s latency).
+Scanned at 2026-11-05 11:20:34 CET for 21s
+
+PORT      STATE SERVICE     REASON         VERSION
+22/tcp    open  ssh         syn-ack ttl 62 OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 b8:73:2a:aa:d2:ef:c0:73:f5:3f:ef:8b:11:93:df:f6 (RSA)
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOdfh653DScxayl/p/qyauv/wosZ2Ewxf14e3Yb+UH91xDoNlwh3T7IVOP0GscUDS2MQRbbeytkmxkNb5MY8hCdqJmYjB2G3I7cwIaNnsXGRyd6Jflb2zgB2KPmsfHOSVdin2wW+pTqR5bD2Lu04tFQy/LpgNPOmirUetbvwuAxAZ+miCvmFJgk4HoYzSvqRCkoJPh8yx1ZS/P4MO2pfBF4ijKHlECY620SgLwK8ly7M9AYgHdBUwRu5GBpDK9AZ2UtftQ38pqIYfygg5Kw2IKPEOFVNq1hBUhV3b+eBG8GL7Ky/wKCSoy2BlGsnCxEpEBVOqaSJaovuo3blIWdSpVwKrHkLEfeSuDwxi16SQLUBNX7B52tO9/RLnwwh2XzrT94iP9Rig86Rl8zRM9jT6WKW4pnNII16OnvxnzRdjBRH+jJceHK+GGSG0sMMSbN90mGkXWvq7T+jO7gFG68aqeRIYpQUTMDbdaQ5ZcHoi2+r2AVwb3Ox03O2tNw+9iJWk=
+|   256 18:db:bc:59:ca:ee:b1:5e:41:5d:4e:4c:a7:a4:91:3e (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBM54SLrmcAL+eR1VdCumheI3KbRh+cqHaLElXBOQ53+14gAP0/0Qd8Gmzmdmo3CtYRHEH+N80Iv1O0kJYFsdOys=
+|   256 3f:60:4c:a5:6d:1d:23:95:25:b8:88:cd:59:9e:48:0e (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKKbqONn7RYgnUCLIJvlXHcnCNXCTLcr1moJnIicJnx2
+111/tcp   open  rpcbind     syn-ack ttl 62 2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  3           2049/udp   nfs
+|   100003  3           2049/udp6  nfs
+|   100003  3,4         2049/tcp   nfs
+|   100003  3,4         2049/tcp6  nfs
+|   100005  1,2,3      40719/tcp   mountd
+|   100005  1,2,3      51532/udp   mountd
+|   100005  1,2,3      51615/tcp6  mountd
+|   100005  1,2,3      52072/udp6  mountd
+|   100021  1,3,4      33393/udp   nlockmgr
+|   100021  1,3,4      35193/tcp6  nlockmgr
+|   100021  1,3,4      39297/tcp   nlockmgr
+|   100021  1,3,4      56352/udp6  nlockmgr
+|   100227  3           2049/tcp   nfs_acl
+|   100227  3           2049/tcp6  nfs_acl
+|   100227  3           2049/udp   nfs_acl
+|_  100227  3           2049/udp6  nfs_acl
+139/tcp   open  netbios-ssn syn-ack ttl 62 Samba smbd 4
+445/tcp   open  netbios-ssn syn-ack ttl 62 Samba smbd 4
+873/tcp   open  rsync       syn-ack ttl 62 (protocol version 31)
+2049/tcp  open  nfs         syn-ack ttl 62 3-4 (RPC #100003)
+6379/tcp  open  redis       syn-ack ttl 62 Redis key-value store
+39297/tcp open  nlockmgr    syn-ack ttl 62 1-4 (RPC #100021)
+40461/tcp open  mountd      syn-ack ttl 62 1-3 (RPC #100005)
+40719/tcp open  mountd      syn-ack ttl 62 1-3 (RPC #100005)
+44801/tcp open  mountd      syn-ack ttl 62 1-3 (RPC #100005)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| nbstat: NetBIOS name: , NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   <00>                 Flags: <unique><active>
+|   <03>                 Flags: <unique><active>
+|   <20>                 Flags: <unique><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+| Statistics:
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_clock-skew: 0s
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2026-11-05T10:20:51
+|_  start_date: N/A
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 12648/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 47698/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 36506/udp): CLEAN (Failed to receive data)
+|   Check 4 (port 3495/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Nov  5 11:20:55 2026 -- 1 IP address (1 host up) scanned in 21.85 seconds

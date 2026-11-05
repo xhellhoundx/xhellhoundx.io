@@ -17,7 +17,7 @@
 
 | | |
 |---|---|
-| **Tags** | [**CVE-2023-27372**, **vuln2**, **vuln3**, **vulnN**, **tool1**, **tool2**, **toolN**, **xN**] |
+| **Tags** | [ **CVE-2023-27372**, **Reverse Engineering**, **ld.so**, **ghidra** ] |
 
 </div>
 

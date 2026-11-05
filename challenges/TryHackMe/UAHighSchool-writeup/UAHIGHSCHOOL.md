@@ -17,7 +17,7 @@
 
 | | |
 |---|---|
-| **Tags** | [**RCE**, **vuln2**, **vuln3**, **vulnN**, **tool1**, **tool2**, **toolN**, **xN**] |
+| **Tags** | [ **RCE** ] |
 
 </div>
 
