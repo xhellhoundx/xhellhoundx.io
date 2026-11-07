@@ -1,7 +1,5 @@
 <div align="center">
-    <figure>
-        <img src="./assets/writeups-banner.jpg" style="border-radius: 15px">
-    </figure>
+    <img src="./assets/writeups-banner.jpg" style="border-radius: 15px">
 </div>
 
 <br>
@@ -29,7 +27,9 @@ hellhound@system:~/articles$ scan ./ --fuzz-directory --show-all
 | TryHackMe | [Publisher](./TryHackMe/Publisher-writeup/PUBLISHER.md) | Fácil | Writeup |
 | TryHackMe | [Pyrat](./TryHackMe/Pyrat-video/PYRAT.md) | Fácil | Writeup |
 | TryHackMe | [Silver Platter](./TryHackMe/SilverPlatter-video/SILVERPLATTER.md) | Fácil | Video [Reporte] |
+| TryHackMe | [Tech_Supp0rt: 1](./TryHackMe/TechSupport-writeup/TECHSUPPORT.md) | Fácil | Writeup |
 | TryHackMe | [UA High School](./TryHackMe/UAHighSchool-writeup/UAHIGHSCHOOL.md) | Fácil | Writeup |
+| TryHackMe | [Valley](./TryHackMe/Valley-writeup/VALLEY.md) | Fácil | Writeup |
 | TryHackMe | [VulnNet: Internal](./TryHackMe/VulnNet:Internal-writeup/VULNNETINTERNAL.md) | Fácil | Writeup |
 | TryHackMe | [VulnNet: Node](./TryHackMe/VulnNet:Node-writeup/VULNNETNODE.md) | Fácil |  Writeup |
 | TryHackMe | [WhiteRose](./TryHackMe/Whiterose-writeup/WHITEROSE.md) | Fácil | Writeup |
