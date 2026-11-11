@@ -25,8 +25,10 @@ hellhound@system:~/articles$ scan ./ --fuzz-directory --show-all
 | TryHackMe | [Lookup](./TryHackMe/Lookup-writeup/LOOKUP.md) | Fácil | Writeup |
 | TryHackMe | [Pickle Rick](./TryHackMe/PicleRick-video/PICKLERICK.md) | Fácil | Writeup |
 | TryHackMe | [Publisher](./TryHackMe/Publisher-writeup/PUBLISHER.md) | Fácil | Writeup |
-| TryHackMe | [Pyrat](./TryHackMe/Pyrat-video/PYRAT.md) | Fácil | Writeup |
+| TryHackMe | [Pyrat](./TryHackMe/Pyrat-video/PYRAT.md) | Fácil | Video [Reporte] |
+| TryHackMe | [Red](./TryHackMe/Red-Writeup/RED.md) | Fácil | Writeup |
 | TryHackMe | [Silver Platter](./TryHackMe/SilverPlatter-video/SILVERPLATTER.md) | Fácil | Video [Reporte] |
+| TryHackMe | [Team](./TryHackMe/Team-writeup/TEAM.md) | Fácil | Writeup |
 | TryHackMe | [Tech_Supp0rt: 1](./TryHackMe/TechSupport-writeup/TECHSUPPORT.md) | Fácil | Writeup |
 | TryHackMe | [UA High School](./TryHackMe/UAHighSchool-writeup/UAHIGHSCHOOL.md) | Fácil | Writeup |
 | TryHackMe | [Valley](./TryHackMe/Valley-writeup/VALLEY.md) | Fácil | Writeup |
