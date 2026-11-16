@@ -16,6 +16,7 @@ hellhound@system:~/articles$ scan ./ --fuzz-directory --show-all
 
 | Plataforma | Reto | Dificultad | Método |
 |---|---|---|---|
+| TryHackMe | [All In One](./TryHackMe/AllInOne-writeup/ALLINONE.md) | Fácil | Writeup |
 | TryHackMe | [B3drock](./TryHackMe/B3drock-writeup/BEDROCK.md) | Fácil | Writeup |
 | TryHackMe | [Basic Pentesting](./TryHackMe/BasicPentesting-video/BASICPENTESTING.md) | Fácil | Video [Reporte] |
 | TryHackMe | [Billing](./TryHackMe/Billing-video/BILLING.md) | Fácil | Video [Reporte] |
@@ -23,7 +24,9 @@ hellhound@system:~/articles$ scan ./ --fuzz-directory --show-all
 | TryHackMe | [Cheese CTF](./TryHackMe/CheeseCTF-video/CHEESE.md) | Fácil | Video [Reporte] |
 | TryHackMe | [Chocolate Factory](./TryHackMe/ChocolateFactory-writeup/CHOCOLATE-FACTORY.md) | Fácil | Writeup |
 | TryHackMe | [Lookup](./TryHackMe/Lookup-writeup/LOOKUP.md) | Fácil | Writeup |
+| TryHackMe | [Opacity](./TryHackMe/Opacity-Writeup/OPACITY.md) | Fácil | Writeup |
 | TryHackMe | [Pickle Rick](./TryHackMe/PicleRick-video/PICKLERICK.md) | Fácil | Writeup |
+| TryHackMe | [Plotted-TMS](./TryHackMe/Plotted-TMS-writeup/PLOTTEDTMS.md) | Fácil | Writeup |
 | TryHackMe | [Publisher](./TryHackMe/Publisher-writeup/PUBLISHER.md) | Fácil | Writeup |
 | TryHackMe | [Pyrat](./TryHackMe/Pyrat-video/PYRAT.md) | Fácil | Video [Reporte] |
 | TryHackMe | [Red](./TryHackMe/Red-Writeup/RED.md) | Fácil | Writeup |

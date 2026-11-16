@@ -1,0 +1,90 @@
+
+
+    All In One
+
+Al ingresar por el puerto 80 - servicio HTTP encontraremos la página de inicio de `Apache`, así que hacemos un escaneo con `ffuf` para ver si existen otras rutas y encontramos algunas adicionales
+
+```
+❯ ffuf -u 'http://allinone.thm/FUZZ' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 200 -ic
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://allinone.thm/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 200
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+wordpress               [Status: 301, Size: 316, Words: 20, Lines: 10, Duration: 87ms]
+                        [Status: 200, Size: 10918, Words: 3499, Lines: 376, Duration: 6051ms]
+hackathons              [Status: 200, Size: 197, Words: 19, Lines: 64, Duration: 208ms]
+```
+
+*FOTO: apache-homepage; wordpress-homepage; hackathons-homepage*
+
+Si vemos vel código fuente de la ruta `/hackathons` veremos un comentario muy curioso al final, lo pasamos por descifrado "Vigenere" y obtenemos lo que parece ser una clave o un "guiño" (Easter Egg) del desarrollador, sin embargo lo conservaremos
+
+*FOTO: hackathons-sc; vigenere-dec* <-- Si la clave no funciona resaltarla en 'vigenere-dec'
+
+Posterior a eso, vamos a la ruta `/wordpress/` y buscamos un poco. Adicional ejecutamos un escaneo para listar usuarios con `wpscan` y encontraremos el usuario **elyana**, además encontramos el plugin "**_Mail Masta 1.0_**" el cual tiene una vulnerabilidad conocida **LFI - Local File Inclusion** (CVE-2016-10956). Podemos ver la vulnerabilidad en [Explot DB 40290](https://www.exploit-db.com/exploits/40290) o si tienen `searchsploit` pueden hacer `searchsploit -x 40290`. Así que vamos a la ruta indicada y hacemos una PoC (Proof of Concept)
+
+*FOTO: elyana-user-found; mail-masta-wpscan; etc-passwd-poc*
+
+Ahora podemos usar [Este script](./assets) que he desarrollado en bash para trabajar más cómodos con la vulnerabilidad y buscaremos el archivo `/var/www/html/wordpress/wp-config.php` que contiene las credenciales del usuario **elyana** para entrar a wordpress
+
+*FOTO: wp-config-creds; wp-login* <-- tapar contraseña de 'wp-config-creds' si es necesario resaltar el codificado base64 en el script
+
+Lo primero que debemos probar es la posibilidad de alterar el código fuente en los temas, en este caso funcionó con el tema "**_Twenty Nineteen_**", simplemente agregamos un comentario en el archivo `404.php`, si funciona lo que haremos será pegar una **web-shell**, la web-shell la pueden conseguir en Parrot-OS o Kali en `/usr/share/webshells/php/php-reverse-shell.php` o también en [PentestMonkey Github](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php). Una vez que carguemos la web shell hay que activar el tema en cuestión (**_Twenty Nineteen_**) y lanzar una petición con `curl` para que cargue la página de error y nos entregue una shell reverse
+
+*FOTO: 404-edit-test; web-shell-404; twenty-nineteen; rev-shell* <-- en '404-edit-test' hay que resaltar el area de themes, appearance, selección del tema, archivo y mensaje de aprobación
+
+Si vamos al directorio de **elyana** encontraremos un archivo `hint.txt`
+
+```
+www-data@ip-10-112-146-41:/home/elyana$ ls -la
+total 48
+drwxr-xr-x 6 elyana elyana 4096 Oct  7  2020 .
+drwxr-xr-x 4 root   root   4096 Nov 14 20:39 ..
+-rw------- 1 elyana elyana 1632 Oct  7  2020 .bash_history
+-rw-r--r-- 1 elyana elyana  220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 elyana elyana 3771 Apr  4  2018 .bashrc
+drwx------ 2 elyana elyana 4096 Oct  5  2020 .cache
+drwxr-x--- 3 root   root   4096 Oct  5  2020 .config
+drwx------ 3 elyana elyana 4096 Oct  5  2020 .gnupg
+drwxrwxr-x 3 elyana elyana 4096 Oct  5  2020 .local
+-rw-r--r-- 1 elyana elyana  807 Apr  4  2018 .profile
+-rw-r--r-- 1 elyana elyana    0 Oct  5  2020 .sudo_as_admin_successful
+-rw-rw-r-- 1 elyana elyana   59 Oct  6  2020 hint.txt
+-rw------- 1 elyana elyana   61 Oct  6  2020 user.txt
+www-data@ip-10-112-146-41:/home/elyana$ cat hint.txt 
+Elyana's user password is hidden in the system. Find it ;)
+```
+
+Si leemos el archivo `/etc/crontab` veremos que estaría llamando a una ruta pero no se está ejecutando, la inspeccionamos y encontramos que el script en sí mismo no está ejecutando nada, pero parece muy extraño ya que es lo más sospechoso que he encontrado en el sistema. Si inspeccionamos los procesos con [Pspy](...) veremos que si se está ejecutando... y como **root**
+
+*FOTO: crontab-script; pspy*
+
+Inmediatamente lo que hacemos será cambiar ese script y enviarnos una Shell, al cabo de unos segundos la recibiremos y podremos tomar los dos flags, ambos están codificados en `base64`
+
+*FOTO: script-edit; root-connect; flags*
+
+
+
+
+
+
+
+
+
